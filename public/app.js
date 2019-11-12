@@ -3,19 +3,15 @@ $("#scrape").on("click", e => {
 
     $.ajax("/api/scrape", {
         type: "GET"
-    }).then(() => {
-        location.reload();
-    });
+    }).then(() => location.reload());
 });
 
 $("#clear").on("click", e => {
     e.preventDefault();
 
-    $.ajax("/api/scrape/remove", {
+    $.ajax("/api/all/remove", {
         type: "DELETE"
-    }).then(() => {
-        location.reload();
-    });
+    }).then(() =>location.reload());
 });
 
 $(".save-article").on("click", function(e) {
@@ -23,9 +19,22 @@ $(".save-article").on("click", function(e) {
 
     const id = $(this).attr("data-id");
     const saved = {
-        unsaved : 1
+        saved : true
     };
 
-    $.ajax("/api/scrape/update", {})
+    $.ajax("/api/update/" + id, {
+        type:"PUT",
+        data: saved
+    }).then(() => location.reload());
 
+});
+
+$(".delete-article").on("click", function(e) {
+    e.preventDefault();
+
+    const id = $(this).attr("data-id");
+    
+    $.ajax("/api/myarticles/remove/" + id, {
+        type:"DELETE"
+    }).then(() => location.reload());
 });

@@ -1,17 +1,48 @@
 <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">Gaming News Crepe</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand brand-style" href="/">News'Crepe</a>
+
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-item nav-link" href="/">Home</a>
                 <a class="nav-item nav-link" href="/myarticles">Saved Articles</a>
-                <a class="nav-item nav-link" href="/api/scrape">Gather Gaming are</a>
-                <a class="nav-item nav-link" href="/api/clear">Disabled</a>
+                <button id="scrape" type="button" class="btn btn-warning btn-space">Get News</button>
+                <button id="clear" type="button" class="btn btn-warning btn-space">Clear Results</button>
             </div>
         </div>
     </nav>
+
+    <div class="jumbotron jumbotron-fluid jbt-background jbt-style" style="margin-bottom:2px;">
+        <div class="container">
+            <h1 class="display-4">Saved Articles</h1>
+            <p class="lead">Gaming articles that have been saved for later!</p>
+        </div>
+    </div>
+
+    <section class="col-10 offset-1 ctr-color">
+        <ul class="list-unstyled">
+            {{#each articles}}
+            {{#if saved}}
+            <li class="media" style="margin-bottom: .8em;">
+                <img src="{{img}}" class="mr-3" style="max-width: 200px;">
+                <div class="media-body">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{title}}</h5>
+                        <div>
+                            <button type="button" class="btn btn-danger delete-article" data-id="{{_id}}"><i
+                                    class="far fa-trash-alt"></i> Delete From Saved</button>
+                            <button type="button" class="btn btn-info note-article" data-id="{{_id}}"><i class="far fa-edit"></i>
+                                Add Note</button>
+                        </div>
+                    </div>
+                    <p>
+                        {{summary}}
+                    </p>
+                    <a href="{{url}}" target="_blank">Go to the article!</a>
+                </div>
+            </li>
+            {{/if}}
+            {{/each}}
+        </ul>
+    </section>
 </div>

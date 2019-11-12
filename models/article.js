@@ -17,7 +17,7 @@ const ArticleSchema = new Schema({
     img: {
         type: String,
     },
-    unsaved: {
+    saved: {
         type: Boolean,
         default: false
     },
