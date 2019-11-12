@@ -6,15 +6,16 @@ const mongoose = require("mongoose");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-const db = require("./models");
+// const db = require("./models");
 const routes = require("./controller/crepe");
 
 const PORT = process.env.PORT || 3000;
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsCrepe";
 const app = express();
 
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));

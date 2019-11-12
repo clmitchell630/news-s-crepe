@@ -1,0 +1,29 @@
+/* css */
+
+.jbt-background {
+    background-image: url("/img/games.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: #7fb8db;
+    min-height: 20em;
+}
+
+.jbt-style {
+    color: whitesmoke;
+    text-align: center;
+}
+
+.jbt-style h1 {
+    font-family: 'Notable', Arial, Helvetica, sans-serif;
+}
+.brand-style{
+    font-family: 'Notable', Arial, Helvetica, sans-serif;
+    font-size: 2em;
+}
+
+.btn-space {
+    margin: 0 .2em;
+}
+

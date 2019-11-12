@@ -2,22 +2,26 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ArticleSchema = new Schema({
-    title:{
+    title: {
         type: String,
         required: true
     },
-    summary:{
+    summary: {
         type: String,
         required: true
     },
-    url:{
+    url: {
         type: String,
         required: true
     },
-    img:{
+    img: {
         type: String,
     },
-    note:{
+    unsaved: {
+        type: Boolean,
+        default: false
+    },
+    note: {
         type: Schema.Types.ObjectId,
         ref: "note"
     }
