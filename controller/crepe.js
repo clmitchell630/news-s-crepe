@@ -42,13 +42,48 @@ router.get("/", (req, res) => {
 });
 
 router.get("/myarticles", (req, res) => {
-    res.render("myarticles");
-
+    // res.render("myarticles");
+    db.Article.find({})
+        .then(dbArticle => {
+            const hbsObject = {
+                articles: dbArticle
+            };
+            console.log("--------------------------------------")
+            // console.log(hbsObject);
+            res.render("myarticles", hbsObject);
+        })
+        .catch(err => res.json(err));
 });
 
-router.delete("/api/scrape/remove", (req, res) => {
+router.delete("/api/all/remove", (req, res) => {
     db.Article.remove()
-        .then(dbArticle => console.log(dbArticle))
+        .then(dbArticle => res.render("home"))
+        .catch(err => console.log(err));
+});
+
+router.delete("/api/myarticles/remove/:id", (req, res) => {
+    db.Article.remove({_id:req.params.id})
+        .then(dbArticle => {
+            const hbsObject = {
+                articles: dbArticle
+            };
+            console.log("--------------------------------------")
+            // console.log(hbsObject);
+            res.render("myarticles", hbsObject);
+        })
+        .catch(err => res.json(err));
+});
+
+router.put("/api/update/:id", (req, res) => {
+    db.Article.findOneAndUpdate({_id:req.params.id}, {saved: req.body.saved})
+        .then(dbArticle =>  {
+            const hbsObject = {
+                articles: dbArticle
+            };
+            console.log("--------------------------------------")
+            // console.log(hbsObject);
+            res.render("home", hbsObject);
+        })
         .catch(err => console.log(err));
 });
 module.exports = router;
